@@ -1,0 +1,13 @@
+{
+  "name": "Hubert's Plugins",
+  "owner": {
+    "name": "Hubert"
+  },
+  "plugins": [
+    {
+      "name": "design-tasks-plugin",
+      "source": "./design-tasks",
+      "description": "Design-Tasks development mode"
+    }
+  ]
+}
