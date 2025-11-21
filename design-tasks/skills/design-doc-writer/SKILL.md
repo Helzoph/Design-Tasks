@@ -101,6 +101,7 @@ flowchart TD
 
 - `docs/design/backend/API-Reference/` - API 接口定义
 - `docs/design/backend/Architecture/` - 宏观架构图、技术选型
+  - `Overview.md` - **必须**：项目总体架构说明文档
 - `docs/design/backend/Data-Model/` - 数据库模型、实体关系图
 - `docs/design/backend/Features/` - 按功能模块描述业务逻辑
 - `docs/design/backend/Guides/` - 开发指南、错误码定义
@@ -109,7 +110,9 @@ flowchart TD
 ### 前端设计文档
 
 - `docs/design/frontend/Architecture/` - 宏观架构、状态管理
+  - `Overview.md` - **必须**：项目总体架构说明文档
 - `docs/design/frontend/Components/` - 组件设计文档
+- `docs/design/frontend/Data-Structures/` - 前端数据结构设计
 - `docs/design/frontend/Guides/` - 开发指南、代码风格
 - `docs/design/frontend/Style-Guide/` - 视觉设计规范
 - `docs/design/frontend/Testing/` - 测试策略和范围
