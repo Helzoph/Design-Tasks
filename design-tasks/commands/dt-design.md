@@ -40,13 +40,14 @@ description: Design-Tasks 开发模式的设计文档更新命令。执行理清
 5. 引导您确认选择方案后，进入下一步
 
 ### 第 3 步：更新设计蓝图
-我将调用 **design-coordinator（Sub Agent）** 来更新设计文档。design-coordinator 会使用 **file-searcher（Skill）** 和 **design-doc-writer（Skill）** 来：
+我将调用 **design-coordinator（Sub Agent）** 来更新设计文档。design-coordinator 会使用 **file-searcher（Skill）**、**researcher（Agent）** 和 **design-doc-writer（Skill）** 来：
 
 1. 搜索需要更新的相关设计文档
-2. 基于确认的方案更新或创建设计文档
-3. 使用统一的设计文档模板
-4. 在 .design-update/ 目录记录更新历史
-5. 确保文档内容纯粹性（只描述最终状态）
+2. 如需要，查询相关技术的最新信息和最佳实践
+3. 基于确认的方案更新或创建设计文档
+4. 使用统一的设计文档模板
+5. 在 .design-update/ 目录记录更新历史
+6. 确保文档内容纯粹性（只描述最终状态）
 
 ## 适用场景
 
