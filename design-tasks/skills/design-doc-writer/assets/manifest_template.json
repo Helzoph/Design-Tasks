@@ -1,0 +1,63 @@
+{
+  "project_name": "项目名称",
+  "last_updated": "ISO-8601时间戳",
+  "tech_stack": {
+    "backend": "框架/语言",
+    "frontend": "框架/语言",
+    "database": "数据库类型"
+  },
+  "directory_structure": {
+    "backend": {
+      "Data-Model": "docs/design/backend/Data-Model/*.yaml",
+      "API-Reference": "docs/design/backend/API-Reference/*.md",
+      "Features": "docs/design/backend/Features/*.md",
+      "Architecture": "docs/design/backend/Architecture/*.md"
+    },
+    "frontend": {
+      "Components": "docs/design/frontend/Components/*.md",
+      "Architecture": "docs/design/frontend/Architecture/*.md"
+    }
+  },
+  "index_map": {
+    "backend_entry": "docs/design/backend/Architecture/Overview.md",
+    "frontend_entry": "docs/design/frontend/Architecture/Overview.md",
+    "data_models": [
+      { "name": "User", "path": "docs/design/backend/Data-Model/User.yaml", "type": "entity" },
+      { "name": "Order", "path": "docs/design/backend/Data-Model/Order.yaml", "type": "entity" },
+      { "name": "OrderItem", "path": "docs/design/backend/Data-Model/OrderItem.yaml", "type": "entity" }
+    ],
+    "api_modules": [
+      { "name": "Auth Endpoints", "path": "docs/design/backend/API-Reference/auth-endpoints.md", "type": "api" },
+      { "name": "Payment Contract", "path": "docs/design/backend/API-Reference/payment-contract.md", "type": "api" }
+    ],
+    "features": [
+      { "name": "Order State Machine", "path": "docs/design/backend/Features/order-state-machine.md", "type": "feature" }
+    ],
+    "components": [
+      { "name": "NavBar", "path": "docs/design/frontend/Components/NavBar.md", "type": "component" },
+      { "name": "UserProfileCard", "path": "docs/design/frontend/Components/UserProfileCard.md", "type": "component" }
+    ]
+  },
+  "naming_conventions": {
+    "data_model": {
+      "pattern": "<EntityName>.yaml",
+      "description": "YAML文件，精准反映业务实体",
+      "example": "Order.yaml"
+    },
+    "api_reference": {
+      "pattern": "<Module>-endpoints.md",
+      "description": "Markdown文件，描述接口契约",
+      "example": "auth-endpoints.md"
+    },
+    "features": {
+      "pattern": "<verb>-<noun>.md",
+      "description": "Markdown文件，描述业务流程",
+      "example": "order-state-machine.md"
+    },
+    "components": {
+      "pattern": "<ComponentName>.md",
+      "description": "Markdown文件，描述前端组件",
+      "example": "UserProfileCard.md"
+    }
+  }
+}

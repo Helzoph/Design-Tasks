@@ -48,6 +48,7 @@ description: Design-Tasks 开发模式的完整工作流程命令。执行理清
 4. 使用统一的设计文档模板
 5. 在 .design-update/ 目录记录更新历史
 6. 确保文档内容纯粹性（只描述最终状态）
+7. **更新 manifest.json**：生成或更新项目的索引地图
 
 ### 第 4 步：创建任务工单
 我将调用 **tasks-creator（Sub Agent）** 来创建修改方案。tasks-creator 会使用 **task-ticket-writer（Skill）** 来：
@@ -56,12 +57,36 @@ description: Design-Tasks 开发模式的完整工作流程命令。执行理清
 2. 基于设计文档创建详细的修改方案
 3. 在 docs/tasks/ 目录保存工单
 4. 建立设计与实现的关联
+5. **生成 YAML Frontmatter**：包含 id、type、description、status、created_at、linked_design 字段
+6. **添加熔断机制**：在工单开头添加"执行者必读"章节
 
 ## 核心约束
 
 - **绝对禁止修改源代码**：我的工作范围严格限制在 `docs` 文件夹内
 - **设计文档纯粹性**：docs/design 目录下的文档是系统的**最终状态蓝图**，只描述"应该是什么样子"
 - **任务工单**：docs/tasks 目录下的工单是连接"蓝图"和"实现"的桥梁，包含修改原因和代码变更
+
+## 核心原则
+
+### 1. Design as SSOT
+- 设计文档是 Single Source of Truth（单一真理来源）
+- 所有实现必须严格遵循设计文档
+- 禁止偏离设计的"自主创新"
+
+### 2. 立法与执法分离
+- `/dt-design` 负责立法（制定设计蓝图）
+- 代码 Agent 负责执法（实现设计）
+- 执法过程发现问题必须熔断并反馈
+
+### 3. 上下文按需加载
+- **manifest.json**：作为项目的"索引地图"，支持无状态 Agent 快速理解项目
+- **工单 YAML Frontmatter**：使用 `linked_design` 字段精准引用设计文档
+- **熔断机制**：工单中的"执行者必读"确保执行者遵守设计约束
+
+### 4. 状态追踪
+- 工单状态流转：`todo` → `in_progress` → `completed` → `verified`
+- YAML Frontmatter 的 `status` 字段用于机器读取和状态管理
+- `/dt-check` 命令验证设计与实现的一致性
 
 ## 项目文档结构
 

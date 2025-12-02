@@ -1,9 +1,35 @@
-# <id>-<type>-<task_description> [未完成]
+---
+id: "<001/002/003...>"
+type: "<feat/fix/refactor/docs/style/test>"
+description: "<task-description>"
+status: "<todo/in_progress/completed/verified>"
+created_at: "<YYYY-MM-DD>"
+---
 
-## 修改目的与背景
+# <id>-<type>-<task_description>
+
+## ⚠️ 执行者必读 (Circuit Breaker)
+
+1. **单向依赖**：必须严格遵循 Design 文档。
+2. **熔断机制**：如果发现代码实现无法符合 Design 文档，或者 Design 文档逻辑有误，**立即停止**。请报错并建议用户运行 `/dt-design` 修正设计。不要擅自修改代码以绕过设计。
+
+## 1. 任务目标
+
+<简述任务要实现的目标，解决问题或实现什么功能>
+
+## 2. 核心依赖 (Reading List)
+
+<!-- 执行 Agent 在开始写代码前，必须调用 Read 工具读取以下文件 -->
+
+- **设计依据**: `<核心逻辑设计文档路径>` (核心逻辑)
+- **架构规范**: `<代码风格和规范文档路径>` (代码风格)
+- **现有代码**: `<增量修改时参考的代码目录>` (增量修改时参考)
+
+## 3. 修改目的与背景
+
 <详细说明为什么要做这次修改，解决了什么问题，或者实现了什么新功能。可以在这里描述当前存在的问题，以及新设计如何解决它。>
 
-## 任务元信息
+## 4. 任务元信息
 
 ### 优先级
 <高/中/低>
@@ -24,86 +50,65 @@
 2. 此任务应在 004-feat-implement_authentication 之前执行
 >
 
-## 涉及的设计文档
-- [../design/frontend/Components/Business/ComplianceReportCheck.md](../design/frontend/Components/Business/ComplianceReportCheck.md)
-
-## 修改方案
+## 5. 修改方案
 
 > **长度要求**: 任务文档应控制在 200-300 行，最多不超过 500 行。如果内容超过此限制，请提醒用户细分任务。
 >
 > **代码块要求**: 每个代码块不超过 10 行。避免展示过多代码，只保留最关键的 1-3 行核心逻辑。
+>
+> **禁止大段代码**: 使用 "核心依赖 (Reading List)" 替代大段粘贴代码。
 
 ### 前端修改
-1. **更新组件渲染逻辑**
-    - **文件**: `src/components/ComplianceReportCheck.tsx`
-    - **说明**: 修改组件的渲染逻辑，从"无数据时不渲染"改为"无数据时渲染空状态提示"。
+
+1. **<修改点1>**
+    - **文件**: `<文件路径>`
+    - **说明**: `<详细说明修改内容>`
     - **关键代码变更**:
-        ```tsx
+        ```<ts/jsx/py>
         // 旧逻辑
-        if (!data) return null;
+        <旧代码1-3行>
 
         // 新逻辑
-        if (!data) return <EmptyState />;
+        <新代码1-3行>
         ```
-    - **修改说明**: 将 `return null` 改为返回空状态组件。
-
-2. **添加国际化文本**
-    - **文件**: `src/locales/zh.json`
-    - **说明**: 添加"无数据可用"的国际化文本。
-    - **关键代码变更**:
-        ```json
-        { "noDataAvailable": "暂无可用数据" }
-        ```
+    - **修改说明**: `<简要说明修改原因>`
 
 ### 后端修改
-1. **优化 API 响应结构**
-    - **文件**: `api/v1/compliance/reports.py`
-    - **说明**: 确保 API 返回空数组而不是 null。
+
+1. **<修改点1>**
+    - **文件**: `<文件路径>`
+    - **说明**: `<详细说明修改内容>`
     - **关键代码变更**:
-        ```python
+        ```<py/js/ts>
         # 旧逻辑
-        return None
+        <旧代码1-3行>
 
         # 新逻辑
-        return []
+        <新代码1-3行>
         ```
-    - **修改说明**: 统一返回空数组。
+    - **修改说明**: `<简要说明修改原因>`
 
-## 测试策略
+## 6. 测试策略
 
 ### 单元测试
 <简要描述需要编写的单元测试，控制在1-2个测试点。例如：
-- **组件测试**: `src/components/ComplianceReportCheck.test.tsx`
-  - 测试无数据时的渲染行为和空状态显示
+- **组件测试**: `src/components/<Name>.test.tsx`
+  - 测试场景和预期结果
 
-- **API 测试**: `api/v1/test_compliance_reports.py`
-  - 测试空数据响应格式验证
+- **API 测试**: `api/v1/test_<name>.py`
+  - 测试场景和预期结果
 >
 
 ### 集成测试
 <简要描述需要编写的集成测试，控制在1个测试点。例如：
-- **端到端测试**: `tests/e2e/test_compliance_flow.py`
-  - 测试前端调用后端 API 获取空数据的完整流程
+- **端到端测试**: `tests/e2e/test_<flow>.py`
+  - 测试前端调用后端 API 的完整流程
 >
 
-## 参考资料
+## 7. 参考资料
+
 <列出相关的外部文档、GitHub 仓库链接等，方便 Agent 在执行任务时查看。例如：
 - [项目 GitHub 仓库](https://github.com/your-org/your-project)
 - [相关依赖库文档](https://lodash.com/docs/4.17.15)
 - [API 设计规范](https://restfulapi.net/)
 >
-
----
-
-## 实现状态标记
-
-每个任务文档的标题后面需要标记当前的实现状态：
-
-- **[未完成]** - 任务尚未开始执行
-- **[进行中]** - 任务正在执行中
-- **[已完成]** - 任务已完成开发和测试
-
-**更新规则**：
-1. 创建任务时，默认标记为 `[未完成]`
-2. 开始执行任务时，更新为 `[进行中]`
-3. 任务完成开发并测试通过后，更新为 `[已完成]`

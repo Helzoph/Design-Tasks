@@ -1,0 +1,31 @@
+# <EntityName>.yaml
+entity: <EntityName>
+table: <table_name>
+description: <实体描述>
+
+columns:
+  - name: <field_name>
+    type: <DATATYPE>
+    nullable: <true|false>
+    default: <default_value>
+    description: <字段描述>
+    enum: [<value1>, <value2>]
+    references:
+      table: <foreign_table>
+      column: <foreign_column>
+
+indexes:
+  - columns: [<column1>, <column2>]
+    unique: <true|false>
+    description: <索引描述>
+
+relations:
+  - type: <one-to-one|one-to-many|many-to-many>
+    target: <TargetEntity>
+    mapped_by: <field_in_target>
+    description: <关系描述>
+
+constraints:
+  - type: <check|unique|foreign_key>
+    definition: <约束定义>
+    description: <约束描述>
